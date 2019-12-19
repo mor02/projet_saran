@@ -2,6 +2,7 @@ package com.poo.mime.impl;
 
 import com.poo.mime.beans.Fichier;
 import com.poo.mime.exceptions.ExceptionExtensionDiffMime;
+import com.poo.mime.exceptions.ExceptionRepertoireNonTrouve;
 import com.poo.mime.exceptions.ExceptionVide;
 import com.poo.mime.interfaces.IAnalyseur;
 import com.poo.mime.interfaces.ITraitement;
@@ -28,6 +29,8 @@ public class Analyseur implements IAnalyseur{
 			System.out.println(e1.getMessage());
 		}catch (ExceptionExtensionDiffMime e2) {
 			System.out.println(e2.getMessage());
+		}catch (ExceptionRepertoireNonTrouve e3) {
+			System.out.println(e3.getMessage());
 		}
 		
 		return false;
@@ -42,17 +45,18 @@ public class Analyseur implements IAnalyseur{
 	}
 
 	@Override
-	public void analyseExtDiffMime(Fichier f) throws ExceptionExtensionDiffMime {
+	public void analyseExtDiffMime(Fichier f) throws ExceptionExtensionDiffMime,ExceptionRepertoireNonTrouve {
 		if(f!=null) {
 			String mimeAttendu = tableDecodage.getTableDecodage().get(f.getExtention());
 			if(!mimeAttendu.equals(f.getMime())) {
-				throw new ExceptionExtensionDiffMime(ConstanteMessage.MESSAGE_ANOMALIE_FICHIER_EXTENTION_DIFF_MIME);
+					throw new ExceptionExtensionDiffMime(ConstanteMessage.MESSAGE_ANOMALIE_FICHIER_EXTENTION_DIFF_MIME);
 			}
 		}else {
-			//TODO : SARAN : il faut ajouter une anomalie pour dire pas fichier ou repertoire
+			throw new ExceptionRepertoireNonTrouve(ConstanteMessage.MESSAGE_ANOMALIE_REP_NON_TROUVE);
 		}
 		
 	}
+
 
 	
 	

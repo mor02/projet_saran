@@ -10,8 +10,7 @@ import java.util.Map;
 public class TableDecodageMime {
 
 	private Map<String, String> tableDecodage = new HashMap<String, String>();
-	//TODO : Mettre le chemin du fichier CSV
-	private final String cheminFichierCSV="";
+	private final String cheminFichierCSV="./reference.csv";
 	public TableDecodageMime() {
 		this.initTableDecodage();
 	}

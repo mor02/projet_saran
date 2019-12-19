@@ -2,6 +2,7 @@ package com.poo.mime.interfaces;
 
 import com.poo.mime.beans.Fichier;
 import com.poo.mime.exceptions.ExceptionExtensionDiffMime;
+import com.poo.mime.exceptions.ExceptionRepertoireNonTrouve;
 import com.poo.mime.exceptions.ExceptionVide;
 
 public interface IAnalyseur {
@@ -10,5 +11,6 @@ public interface IAnalyseur {
 	
 	public void analyseIsFichierVide(Fichier f) throws ExceptionVide;
 	
-	public void analyseExtDiffMime(Fichier f) throws ExceptionExtensionDiffMime;
+	public void analyseExtDiffMime(Fichier f) throws ExceptionExtensionDiffMime,ExceptionRepertoireNonTrouve;
+	
 }

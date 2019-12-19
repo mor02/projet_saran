@@ -43,8 +43,7 @@ public class Traitement {
 						
 						System.out.println("Les dimensions de cette image sont h ="+height+"px, w ="+width+"px");
 					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						System.out.println(e.getMessage());
 					}
 					
 				} else {

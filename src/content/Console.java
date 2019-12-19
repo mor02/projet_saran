@@ -11,7 +11,6 @@ import content.*;
 public class Console {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		
 		// Entree nulle de parametre au terminal : affichage du mode d'utilisation
 		

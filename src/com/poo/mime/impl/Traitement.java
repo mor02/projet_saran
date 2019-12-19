@@ -44,14 +44,14 @@ public class Traitement implements ITraitement{
 
 	@Override
 	public String getNomFichier(String chemin) {
-		// TODO Saran
-		return null;
+		 String nomFichier = chemin.substring(chemin.lastIndexOf('.') + 0);
+			return nomFichier;
 	}
 
 	@Override
 	public String getExtensionFichier(String chemin) {
-		// TODO Saran
-		return null;
+		 String extension = chemin.substring(chemin.lastIndexOf('.') + 1);
+		return extension;
 	}
 
 	@Override
@@ -76,8 +76,8 @@ public class Traitement implements ITraitement{
 
 	@Override
 	public int getTailleFichier(String chemin) {
-		// TODO Saran
-		return 0;
+		int octets = (int) new File(chemin).length();
+		return octets;
 	}
 
 	
