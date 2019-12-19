@@ -5,13 +5,13 @@ import com.poo.mime.exceptions.ExceptionExtensionDiffMime;
 import com.poo.mime.exceptions.ExceptionRepertoireNonTrouve;
 import com.poo.mime.exceptions.ExceptionVide;
 import com.poo.mime.interfaces.IAnalyseur;
-import com.poo.mime.interfaces.ITraitement;
+import com.poo.mime.interfaces.ISerialisation;
 import com.poo.mime.messages.ConstanteMessage;
 import com.poo.mime.utils.TableDecodageMime;
 
 public class Analyseur implements IAnalyseur{
 
-	ITraitement composanteTraitement = new Traitement();
+	ISerialisation composanteTraitement = new Serialisation();
 	TableDecodageMime tableDecodage = new TableDecodageMime();
 	@Override
 	public boolean analysePrincaple(String chemin) {

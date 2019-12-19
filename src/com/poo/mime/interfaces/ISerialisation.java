@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.poo.mime.beans.Fichier;;
 
-public interface ITraitement {
+public interface ISerialisation {
 	/**
 	 * Sérialisation : Cette prend en paramètre un fichier physique et retourne un fichier logique (Fichier.java)
 	 * @param f

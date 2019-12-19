@@ -8,11 +8,11 @@ import java.util.Scanner;
 
 import org.apache.tika.Tika;
 
-import com.poo.mime.interfaces.ITraitement;
+import com.poo.mime.interfaces.ISerialisation;
 
 import com.poo.mime.beans.*;
 
-public class Traitement implements ITraitement{
+public class Serialisation implements ISerialisation{
 
 	@Override
 	public Fichier processing(String chemin) {
@@ -24,7 +24,7 @@ public class Traitement implements ITraitement{
 		fichier.setName(this.getNomFichier(chemin));
 		fichier.setContenus(this.getContenusFichier(chemin));
 		fichier.setTaille(this.getTailleFichier(chemin));
-		return null;
+		return fichier;
 	}
 
 	@Override
