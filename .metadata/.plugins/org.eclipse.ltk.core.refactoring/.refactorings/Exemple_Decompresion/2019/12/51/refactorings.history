@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename compilation unit &apos;Decompresser2.java&apos; to &apos;UnZipDemo.java&apos;&#x0D;&#x0A;- Original project: &apos;Exemple_Decompresion&apos;&#x0D;&#x0A;- Original element: &apos;Decompresser2.java&apos;&#x0D;&#x0A;- Renamed element: &apos;UnZipDemo.java&apos;" description="Rename compilation unit &apos;Decompresser2.java&apos;" flags="2" id="org.eclipse.jdt.ui.rename.compilationunit" input="/src&lt;{Decompresser2.java" name="UnZipDemo.java" references="false" stamp="1576775580830" version="1.0"/>
+</session>

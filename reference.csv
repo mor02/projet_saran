@@ -1,0 +1,8 @@
+html,text/html,<!DOCTYPE html>
+jar,application/java-archive,
+zip,application/zip,chercher
+odt,application/vnd.oasis.opendocument.text,
+sh,application/x-sh,#!bin/
+png,image/png
+jpeg,image/jpeg
+jpg,image/jpeg

@@ -1,0 +1,17 @@
+Les principales actions de votre logiciel sont :
+• la vérification d’un fichier de la machine (sur la base de l’extension et du type MIME du
+fichier)
+• l’exploration complète (un dossier et l’ensemble de ses sous-dossiers) d’un répertoire
+avec vérification de chaque fichier.
+• La validation de l’extension et du type MIME sur la base d’une liste de signatures à créer (exemple : un fichier d’extension « .html » et de type MIME « text/html » devrait
+commencer par « <!DOCTYPE html> » ; un fichier script d’extension « .sh » et de type
+MIME « application/x-shellscript » ou « application/x-shell » devrait commencer6
+par
+
+« #!/bin/ » (par exemple #!/bin/bash).
+• Pour certains type de fichiers, la vérification de leur intégrité : principe : le programme
+peut lancer la décompression d’un fichier compressé (de type zip par exemple) afin de
+s’assurer qu’il s’agit bien d’un fichier zip, de même, les fichiers des suites bureautiques
+(docx, xlsx, pptx / odt, ods, odp) sont en réalité des fichiers zip que l’on peut vérifier de
+la même manière. Pour les images, on peut récupérer les dimensions afin de s’assurer
+qu’il s’agit bien d’une image, etc.

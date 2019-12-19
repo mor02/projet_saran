@@ -1,0 +1,1 @@
+INDEX VERSION 1.131+C:\Users\amgharm\Documents\C4\Transverse\Formations\cours_saran\PROJET 2019-20191213T192249Z-001\PROJET 2019\POO_MIME_2019-20\.metadata\.plugins\org.eclipse.jdt.core
