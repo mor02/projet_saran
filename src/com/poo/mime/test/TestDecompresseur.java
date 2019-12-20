@@ -8,7 +8,7 @@ import com.poo.mime.utils.Decompresser;
 
 
 public class TestDecompresseur {
-
+	//TODO : SARAN Decompresseur à tester
 	public static void main(String[] args) {
 		System.out.println("debut test");
 		File zipfile = new File("C://Users//amgharm//Documents");
@@ -18,11 +18,10 @@ public class TestDecompresseur {
 	    try {
 			Decompresser.unzip(zipfile, folder);
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
+			
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println(e.getMessage());
 		}
 		
 		

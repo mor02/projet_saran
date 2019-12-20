@@ -39,7 +39,7 @@ public class Serialisation implements ISerialisation{
 	}
 
 	public String getNomFichier(String chemin) {
-		//TODO : Anomalie : Le nom du fichier est mal extrait
+		//TODO SARAN : URGENT Anomalie : Le nom du fichier est mal extrait
 		 String nomFichier = chemin.substring(chemin.lastIndexOf('.') + 0);
 			return nomFichier;
 	}

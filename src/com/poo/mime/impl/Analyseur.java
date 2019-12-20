@@ -24,6 +24,10 @@ public class Analyseur implements IAnalyseur{
 			this.analyseIsFichierVide(fichierAnalyse);
 			//Anomalie 2
 			this.analyseExtDiffMime(fichierAnalyse);
+			
+			//TODO SARAN : Anomalie sur les images si l'extention jpeg ...
+			
+			//TODO : vnd.oasis.opendocument.text, --> à clarifier
 		}catch (ExceptionVide e1) {
 			System.out.println(e1.getMessage());
 		}catch (ExceptionExtensionDiffMime e2) {

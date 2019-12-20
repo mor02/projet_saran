@@ -13,7 +13,7 @@ public class TableDecodageMime {
 
 	private Map<String, String[]> tableDecodage = new HashMap<String, String[]>();
 	//private final String cheminFichierCSV=".\\res\\referenceV0.csv";
-	//TODO : Il faut trouver une solution pour que ça fonctionne avec un chemin relatif
+	//TODO : AMINE Il faut trouver une solution pour que ça fonctionne avec un chemin relatif
 	private final String cheminFichierCSV="C://Users//amgharm//Documents//C4//Transverse//Formations//cours_saran//PROJET 2019-20191213T192249Z-001//PROJET 2019//POO_MIME_2019-20//res//reference.csv";
 	public TableDecodageMime() {
 		this.initTableDecodage();
