@@ -6,15 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import org.apache.tika.Tika;
-
+import com.poo.mime.beans.Fichier;
 import com.poo.mime.interfaces.ISerialisation;
-
-import com.poo.mime.beans.*;
 
 public class Serialisation implements ISerialisation{
 
-	@Override
 	public Fichier processing(String chemin) {
 		
 		Fichier fichier = new Fichier();
@@ -27,34 +23,31 @@ public class Serialisation implements ISerialisation{
 		return fichier;
 	}
 
-	@Override
 	public String getMimeFichier(String chemin) {
 		
 		 //fichier doit être dans le repertoire
-	      File file = new File(chemin);//
-	      
-	      //creation objet tika
-	      Tika tika = new Tika();
-	      
-	      //detection du type MIME
-	      String mime = tika.detect(file);
-		
-	      return mime;
+//	      File file = new File(chemin);//
+//	      
+//	      //creation objet tika
+//	      Tika tika = new Tika();
+//	      
+//	      //detection du type MIME
+//	      String mime = tika.detect(file);
+//		
+//	      return mime;
+		return null;
 	}
 
-	@Override
 	public String getNomFichier(String chemin) {
 		 String nomFichier = chemin.substring(chemin.lastIndexOf('.') + 0);
 			return nomFichier;
 	}
 
-	@Override
 	public String getExtensionFichier(String chemin) {
 		 String extension = chemin.substring(chemin.lastIndexOf('.') + 1);
 		return extension;
 	}
 
-	@Override
 	public List<String> getContenusFichier(String chemin) {
 		
 		Scanner input = null;
@@ -74,7 +67,6 @@ public class Serialisation implements ISerialisation{
 
 	}
 
-	@Override
 	public int getTailleFichier(String chemin) {
 		int octets = (int) new File(chemin).length();
 		return octets;

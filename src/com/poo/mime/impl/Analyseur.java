@@ -13,7 +13,6 @@ public class Analyseur implements IAnalyseur{
 
 	ISerialisation composanteTraitement = new Serialisation();
 	TableDecodageMime tableDecodage = new TableDecodageMime();
-	@Override
 	public boolean analysePrincaple(String chemin) {
 		//1 Parsing
 		Fichier fichierAnalyse = composanteTraitement.processing(chemin);
@@ -36,7 +35,6 @@ public class Analyseur implements IAnalyseur{
 		return false;
 	}
 	
-	@Override
 	public void analyseIsFichierVide(Fichier f) throws ExceptionVide {
 		
 		if(f== null || f.getTaille()==0) {
@@ -44,7 +42,6 @@ public class Analyseur implements IAnalyseur{
 		}
 	}
 
-	@Override
 	public void analyseExtDiffMime(Fichier f) throws ExceptionExtensionDiffMime,ExceptionRepertoireNonTrouve {
 		if(f!=null) {
 			String mimeAttendu = tableDecodage.getTableDecodage().get(f.getExtention());

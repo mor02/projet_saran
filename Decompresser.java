@@ -81,15 +81,16 @@ package content;
 
 	
 
-	MyZip.unzip("patatos.zip", "C:/patatos");
+	//MyZip.unzip("patatos.zip", "C:/patatos");
 
 	//Ce qui va décompresser "patatos.zip" dans "C:/patatos".
 
 	//On peut éventuellement rajouter une méthode main à notre class MyZip:
 
-	public static void main(String[] args) throws Exception {
-	    File zipfile = new File(args[0]);
-	    File folder = new File(args[1]);
+	public static void main(String[] args) {
+	    File zipfile = new File("C://Users//amgharm//Documents//temp");
+	    File folder = new File("CLI.zip");
+	    
 
 	    MyZip.unzip(zipfile, folder);
 	}
