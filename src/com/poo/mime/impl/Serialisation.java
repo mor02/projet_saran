@@ -18,7 +18,7 @@ public class Serialisation implements ISerialisation{
 		fichier.setMime(this.getMimeFichier(chemin));
 		fichier.setExtention(this.getExtensionFichier(chemin));
 		fichier.setName(this.getNomFichier(chemin));
-		fichier.setContenus(this.getContenusFichier(chemin));
+		fichier.setContenu(this.getContenusFichier(chemin));
 		fichier.setTaille(this.getTailleFichier(chemin));
 		return fichier;
 	}
@@ -35,10 +35,11 @@ public class Serialisation implements ISerialisation{
 //	      String mime = tika.detect(file);
 //		
 //	      return mime;
-		return null;
+		return "text/html";
 	}
 
 	public String getNomFichier(String chemin) {
+		//TODO : Anomalie : Le nom du fichier est mal extrait
 		 String nomFichier = chemin.substring(chemin.lastIndexOf('.') + 0);
 			return nomFichier;
 	}
@@ -48,8 +49,7 @@ public class Serialisation implements ISerialisation{
 		return extension;
 	}
 
-	public List<String> getContenusFichier(String chemin) {
-		
+	public String getContenusFichier(String chemin) {
 		Scanner input = null;
 		try {
 			input = new Scanner(new File(chemin));
@@ -60,10 +60,10 @@ public class Serialisation implements ISerialisation{
 		List<String> allLines = new ArrayList<String>();
 		while (input.hasNextLine()) {
 			String line = input.nextLine();
-			allLines.add(line);
+			return line;
 		}
+		return null;
 		
-		return allLines;
 
 	}
 

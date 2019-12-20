@@ -13,7 +13,7 @@ public class Fichier {
 		private String name;
 		private String extention;
 		private String mime;
-		private List<String> contenus;
+		private String contenu;
 		private int taille;
 		
 		public Fichier () {
@@ -83,12 +83,12 @@ public class Fichier {
 			return "Fichier [name=" + name + ", extention=" + extention + ", mime=" + mime + "]\n";
 		}
 		
-		public void setContenus(List<String> contens) {
-			this.contenus=contens;
+		public void setContenu(String conten) {
+			this.contenu=conten;
 		}
 		
-		public List<String> getContenus(){
-			return this.contenus;
+		public String getContenu(){
+			return this.contenu;
 		}
 		
 		public void setTaille(int taille) {

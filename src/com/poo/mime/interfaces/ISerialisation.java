@@ -1,7 +1,5 @@
 package com.poo.mime.interfaces;
 
-import java.util.List;
-
 import com.poo.mime.beans.Fichier;;
 
 public interface ISerialisation {
@@ -18,7 +16,7 @@ public interface ISerialisation {
 	
 	public String getExtensionFichier(String chemin);
 	
-	public List<String> getContenusFichier(String chemin);
+	public String getContenusFichier(String chemin);
 	
 	public int getTailleFichier(String chemin);
 	
