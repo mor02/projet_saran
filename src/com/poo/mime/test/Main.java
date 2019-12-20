@@ -10,9 +10,16 @@ public class Main {
 
 	public static void main(String[] args) {
 		// Mockage
-		// Type d'action demandÈe par l'utilisateur
+		// Type d'action demand√©e par l'utilisateur
 		if(args==null || args.length==0) {
 			//TODO :SARAN UREGENT Ajouter l'explication du programme
+			//TODO ce TODO je l'ai effectu√©e
+			System.out.println("Modes d'utilisation ");
+			System.out.println("-d : liste et analyse tous les fichiers a partir du dossier specifie");
+			System.out.println("-f : prend en entree le fichier voulu et affiche a l'ecran le resultat de son traitement");
+			System.out.println("-s : sauvegarde le resultat de la verification");
+			System.out.println("gui.jar : la derniere ligne correspond au lancement de l'interface graphique");	
+			
 		}
 		//String TYPE_ACTION = args[0];
 		 String TYPE_ACTION = "-d";
@@ -32,7 +39,7 @@ public class Main {
 			File[] files=repertoire.listFiles();
 			for(File f : files) {
 				System.out.println(f.getAbsolutePath());
-				//TODO : SARAN avant de rajouter le ficheir dans la liste il faut vÈrifier si c'est un zip ou jar, si c'est le cas, il faut le dÈzipper (attention au cas des zip dans des zip)
+				//TODO : SARAN avant de rajouter le ficheir dans la liste il faut v√©rifier si c'est un zip ou jar, si c'est le cas, il faut le d√©zipper (attention au cas des zip dans des zip)
 				listeFichiers.add(f.getAbsolutePath());
 			}
 			
