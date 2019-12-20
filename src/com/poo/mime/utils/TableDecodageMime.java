@@ -1,6 +1,7 @@
 package com.poo.mime.utils;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -10,7 +11,7 @@ import java.util.Map;
 public class TableDecodageMime {
 
 	private Map<String, String> tableDecodage = new HashMap<String, String>();
-	private final String cheminFichierCSV="./reference.csv";
+	private final String cheminFichierCSV="reference.csv";
 	public TableDecodageMime() {
 		this.initTableDecodage();
 	}
@@ -19,7 +20,9 @@ public class TableDecodageMime {
 		
 		BufferedReader in;
 		try {
-			in = new BufferedReader(new FileReader(cheminFichierCSV));
+			ClassLoader classLoader = getClass().getClassLoader();
+			File file = new File(classLoader.getResource(cheminFichierCSV).getFile());
+			in = new BufferedReader(new FileReader(file));
 			String Line;
 			while ((Line=in.readLine()) != null ) {		
 				String[] args = Line.split(",");
