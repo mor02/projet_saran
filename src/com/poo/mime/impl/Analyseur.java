@@ -2,11 +2,13 @@ package com.poo.mime.impl;
 
 import com.poo.mime.beans.Fichier;
 import com.poo.mime.exceptions.ExceptionExtensionDiffMime;
+import com.poo.mime.exceptions.ExceptionImage;
 import com.poo.mime.exceptions.ExceptionRepertoireNonTrouve;
 import com.poo.mime.exceptions.ExceptionVide;
 import com.poo.mime.interfaces.IAnalyseur;
 import com.poo.mime.interfaces.ISerialisation;
 import com.poo.mime.messages.Constantes;
+import com.poo.mime.utils.JImage;
 import com.poo.mime.utils.TableDecodageMime;
 
 public class Analyseur implements IAnalyseur{
@@ -25,8 +27,8 @@ public class Analyseur implements IAnalyseur{
 			//Anomalie 2
 			this.analyseExtDiffMime(fichierAnalyse);
 			
-			//TODO SARAN : Anomalie sur les images si l'extention jpeg ...
-			
+			//TODO SARAN : Anomalie sur les images si l'extention jpeg ... ==> FAIT a expliquer lors de la seance
+			this.analyseImage(chemin);
 			//TODO : vnd.oasis.opendocument.text, --> à clarifier
 		}catch (ExceptionVide e1) {
 			System.out.println(e1.getMessage());
@@ -34,6 +36,8 @@ public class Analyseur implements IAnalyseur{
 			System.out.println(e2.getMessage());
 		}catch (ExceptionRepertoireNonTrouve e3) {
 			System.out.println(e3.getMessage());
+		}catch (ExceptionImage e4) {
+			System.out.println(e4.getMessage());
 		}
 		
 		return false;
@@ -63,6 +67,15 @@ public class Analyseur implements IAnalyseur{
 			}
 		}else {
 			throw new ExceptionRepertoireNonTrouve(Constantes.MESSAGE_ANOMALIE_REP_NON_TROUVE);
+		}
+		
+	}
+
+	@Override
+	public void analyseImage(String chemin) throws ExceptionImage {
+		JImage image = new JImage(chemin);
+		if(image.getDimImage()==null) {
+			throw new ExceptionImage(Constantes.MESSAGE_ANOMALIE_IMAGE);
 		}
 		
 	}
