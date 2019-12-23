@@ -38,11 +38,18 @@ public class Serialisation implements ISerialisation{
 		return "text/html";
 	}
 
-	public String getNomFichier(String chemin) {
+	//public String getNomFichier(String chemin) {
 		//TODO SARAN : URGENT Anomalie : Le nom du fichier est mal extrait
-		 String nomFichier = chemin.substring(chemin.lastIndexOf('.') + 0);
+	//	 String nomFichier = chemin.substring(chemin.lastIndexOf('.') + 0);
+	//		return nomFichier;
+	//}
+	
+	public String getNomFichier(String chemin) {
+		TODO SARAN : URGENT Anomalie : Le nom du fichier est mal extrait
+		 String nomFichier = chemin.substring(chemin.firstIndexOf('.') + 0);
 			return nomFichier;
 	}
+	
 
 	public String getExtensionFichier(String chemin) {
 		 String extension = chemin.substring(chemin.lastIndexOf('.') + 1);
