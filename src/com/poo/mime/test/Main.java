@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.poo.mime.beans.ResultatAnalyse;
 import com.poo.mime.impl.Analyseur;
 
 public class Main {
@@ -11,9 +12,7 @@ public class Main {
 	public static void main(String[] args) {
 		// Mockage
 		// Type d'action demandée par l'utilisateur
-		if(args==null || args.length==0) {
-			//TODO :SARAN UREGENT Ajouter l'explication du programme
-			//TODO ce TODO je l'ai effectuée
+		if((args==null || args.length==0 || "-h".equals(args[0]))) {
 			System.out.println("Modes d'utilisation ");
 			System.out.println("-d : liste et analyse tous les fichiers a partir du dossier specifie");
 			System.out.println("-f : prend en entree le fichier voulu et affiche a l'ecran le resultat de son traitement");
@@ -24,11 +23,14 @@ public class Main {
 		//String TYPE_ACTION = args[0];
 		 String TYPE_ACTION = "-d";
 		Analyseur analyseur = new Analyseur();
+		List<ResultatAnalyse> listeResAnalyse =new ArrayList<ResultatAnalyse>();
 		switch (TYPE_ACTION) {
 		// Cas d'un fichier : java -jar cli.jar f fichierTest.html
 		case "-f":
-			String fichier = args[1];
-			analyseur.analysePrincaple(fichier);
+			//String fichier = args[1];
+			String fichier = ".\\res\\testWord.docx";
+			ResultatAnalyse r = analyseur.analysePrincaple(fichier);
+			listeResAnalyse.add(r);
 			break;
 		// Cas d'un repertoire
 		case "-d":
@@ -39,17 +41,24 @@ public class Main {
 			File[] files=repertoire.listFiles();
 			for(File f : files) {
 				System.out.println(f.getAbsolutePath());
-				//TODO : SARAN avant de rajouter le ficheir dans la liste il faut vérifier si c'est un zip ou jar, si c'est le cas, il faut le dézipper (attention au cas des zip dans des zip)
 				listeFichiers.add(f.getAbsolutePath());
 			}
 			
 			for (String cheminF : listeFichiers) {
-				analyseur.analysePrincaple(cheminF);
+				ResultatAnalyse r1 = analyseur.analysePrincaple(cheminF);
+				listeResAnalyse.add(r1);
 			}
 			break;
 		}
 		
-		//TODO : SARAN Travailler sur la partie sauvegarde sous csv (option s)
+		if(args!=null && args.length>3 && "-s".equals(args[2])) {
+			//Proc�der � la generation du resultat d'analyse en CSV
+			//VO : imprission au console de l'objet
+			for(ResultatAnalyse rTmp: listeResAnalyse) {
+				System.out.println("Nom Fichier : " + rTmp.getFichieraAnalyser().getName() + " Extension fichier : " + rTmp.getFichieraAnalyser().getExtention() + " resultat analyse :" + rTmp.getResultatAnalyse());
+			}
+			//V1 : Ecriture de l'objet dans un fichier csv
+		}
 
 	}
 }

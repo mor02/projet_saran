@@ -9,12 +9,12 @@ import java.util.Scanner;
 import com.poo.mime.beans.Fichier;
 import com.poo.mime.interfaces.ISerialisation;
 
-public class Serialisation implements ISerialisation{
+public class Serialisation implements ISerialisation {
 
 	public Fichier processing(String chemin) {
-		
+
 		Fichier fichier = new Fichier();
-		
+
 		fichier.setMime(this.getMimeFichier(chemin));
 		fichier.setExtention(this.getExtensionFichier(chemin));
 		fichier.setName(this.getNomFichier(chemin));
@@ -24,8 +24,8 @@ public class Serialisation implements ISerialisation{
 	}
 
 	public String getMimeFichier(String chemin) {
-		
-		 //fichier doit être dans le repertoire
+
+		// fichier doit être dans le repertoire
 //	      File file = new File(chemin);//
 //	      
 //	      //creation objet tika
@@ -38,21 +38,14 @@ public class Serialisation implements ISerialisation{
 		return "text/html";
 	}
 
-	//public String getNomFichier(String chemin) {
-		//TODO SARAN : URGENT Anomalie : Le nom du fichier est mal extrait
-	//	 String nomFichier = chemin.substring(chemin.lastIndexOf('.') + 0);
-	//		return nomFichier;
-	//}
-	
 	public String getNomFichier(String chemin) {
-		TODO SARAN : URGENT Anomalie : Le nom du fichier est mal extrait
-		 String nomFichier = chemin.substring(chemin.firstIndexOf('.') + 0);
-			return nomFichier;
+		String nomFichierTrm = chemin.substring(chemin.lastIndexOf('\\') + 1);
+		String tab [] =nomFichierTrm.split("\\.");
+		return tab[0];
 	}
-	
 
 	public String getExtensionFichier(String chemin) {
-		 String extension = chemin.substring(chemin.lastIndexOf('.') + 1);
+		String extension = chemin.substring(chemin.lastIndexOf('.') + 1);
 		return extension;
 	}
 
@@ -70,7 +63,6 @@ public class Serialisation implements ISerialisation{
 			return line;
 		}
 		return null;
-		
 
 	}
 
@@ -79,5 +71,4 @@ public class Serialisation implements ISerialisation{
 		return octets;
 	}
 
-	
 }
