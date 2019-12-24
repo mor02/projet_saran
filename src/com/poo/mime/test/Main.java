@@ -11,7 +11,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		// Mockage
-		// Type d'action demandée par l'utilisateur
+		// Type d'action demandÃ©e par l'utilisateur
 		if((args==null || args.length==0 || "-h".equals(args[0]))) {
 			System.out.println("Modes d'utilisation ");
 			System.out.println("-d : liste et analyse tous les fichiers a partir du dossier specifie");
@@ -52,12 +52,17 @@ public class Main {
 		}
 		
 		if(args!=null && args.length>3 && "-s".equals(args[2])) {
-			//Proc�der � la generation du resultat d'analyse en CSV
+			//Procéder à la generation du resultat d'analyse en CSV
 			//VO : imprission au console de l'objet
 			for(ResultatAnalyse rTmp: listeResAnalyse) {
 				System.out.println("Nom Fichier : " + rTmp.getFichieraAnalyser().getName() + " Extension fichier : " + rTmp.getFichieraAnalyser().getExtention() + " resultat analyse :" + rTmp.getResultatAnalyse());
 			}
 			//V1 : Ecriture de l'objet dans un fichier csv
+			
+			for(ResultatAnalyse rTmp: listeResAnalyse) {
+				rTmp.writeFile(new FileWriter(file));
+				System.out.println("Nom Fichier : " + rTmp.getFichieraAnalyser().getName() + " Extension fichier : " + rTmp.getFichieraAnalyser().getExtention() + " resultat analyse :" + rTmp.getResultatAnalyse());
+			}
 		}
 
 	}
