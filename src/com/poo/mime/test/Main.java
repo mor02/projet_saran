@@ -25,23 +25,20 @@ public class Main {
 			System.out.println("gui.jar : la derniere ligne correspond au lancement de l'interface graphique");
 
 		}
-		// String TYPE_ACTION = args[0];
-		String TYPE_ACTION = "-d";
+		String TYPE_ACTION = args[0];
 		Analyseur analyseur = new Analyseur();
 		List<ResultatAnalyse> listeResAnalyse = new ArrayList<ResultatAnalyse>();
 		switch (TYPE_ACTION) {
 		// Cas d'un fichier : java -jar cli.jar f fichierTest.html
 		case "-f":
-			// String fichier = args[1];
-			String fichier = ".\\res\\testWord.docx";
+			String fichier = args[1];
 			ResultatAnalyse r = analyseur.analysePrincaple(fichier);
 			listeResAnalyse.add(r);
 			break;
 		// Cas d'un repertoire
 		case "-d":
 			List<String> listeFichiers = new ArrayList<String>();
-			// String rep = args[1];
-			String rep = ".\\res\\rep1";
+			String rep = args[1];
 			File repertoire = new File(rep);
 			File[] files = repertoire.listFiles();
 			for (File f : files) {
@@ -56,11 +53,12 @@ public class Main {
 			break;
 		}
 
+		
 		if (args != null && args.length > 3 && "-s".equals(args[2])) {
 		// Procéder à la generation du resultat d'analyse en CSV
 		// V1 : Ecriture de l'objet dans un fichier csv
 		
-		String sfile = ".\\res\\"+args[4];
+		String sfile = ".\\res\\"+args[3];
 
 		OutputStreamWriter out = null;
 		PrintWriter pw = null;
@@ -79,6 +77,12 @@ public class Main {
 		pw.flush();
 		pw.close();
 
+		}
+		
+		System.out.println("Nom ;Extension;taille;resultat d'analyse");
+		for (ResultatAnalyse rTmp : listeResAnalyse) {
+			System.out.println(rTmp.getFichieraAnalyser().getName() + ";" + rTmp.getFichieraAnalyser().getExtention() + ";"
+					+ rTmp.getFichieraAnalyser().getTaille() + ";" + rTmp.getResultatAnalyse());
 		}
 
 	}
