@@ -15,6 +15,7 @@ public class Main {
 
 	public static void main(String[] args) {
 		// Mockage
+		List<ResultatAnalyse> listeResAnalyse = new ArrayList<ResultatAnalyse>();
 		// Type d'action demandÃ©e par l'utilisateur
 		if ((args == null || args.length == 0 || "-h".equals(args[0]))) {
 			System.out.println("Modes d'utilisation ");
@@ -25,65 +26,71 @@ public class Main {
 			System.out.println("gui.jar : la derniere ligne correspond au lancement de l'interface graphique");
 
 		}
-		String TYPE_ACTION = args[0];
-		Analyseur analyseur = new Analyseur();
-		List<ResultatAnalyse> listeResAnalyse = new ArrayList<ResultatAnalyse>();
-		switch (TYPE_ACTION) {
-		// Cas d'un fichier : java -jar cli.jar f fichierTest.html
-		case "-f":
-			String fichier = args[1];
-			ResultatAnalyse r = analyseur.analysePrincaple(fichier);
-			listeResAnalyse.add(r);
-			break;
-		// Cas d'un repertoire
-		case "-d":
-			List<String> listeFichiers = new ArrayList<String>();
-			String rep = args[1];
-			File repertoire = new File(rep);
-			File[] files = repertoire.listFiles();
-			for (File f : files) {
-				System.out.println(f.getAbsolutePath());
-				listeFichiers.add(f.getAbsolutePath());
+		if (args.length > 0) {
+			String TYPE_ACTION = args[0];
+			Analyseur analyseur = new Analyseur();
+			
+			switch (TYPE_ACTION) {
+			// Cas d'un fichier : java -jar cli.jar f fichierTest.html
+			case "-f":
+				String fichier = args[1];
+				ResultatAnalyse r = analyseur.analysePrincaple(fichier);
+				listeResAnalyse.add(r);
+				break;
+			// Cas d'un repertoire
+			case "-d":
+				List<String> listeFichiers = new ArrayList<String>();
+				String rep = args[1];
+				File repertoire = new File(rep);
+				File[] files = repertoire.listFiles();
+				for (File f : files) {
+					System.out.println(f.getAbsolutePath());
+					listeFichiers.add(f.getAbsolutePath());
+				}
+
+				for (String cheminF : listeFichiers) {
+					ResultatAnalyse r1 = analyseur.analysePrincaple(cheminF);
+					listeResAnalyse.add(r1);
+				}
+				break;
 			}
 
-			for (String cheminF : listeFichiers) {
-				ResultatAnalyse r1 = analyseur.analysePrincaple(cheminF);
-				listeResAnalyse.add(r1);
+			if (args != null && args.length > 3 && "-s".equals(args[2])) {
+				// Procéder à la generation du resultat d'analyse en CSV
+				// V1 : Ecriture de l'objet dans un fichier csv
+
+				String sfile = ".\\res\\" + args[3];
+
+				OutputStreamWriter out = null;
+				PrintWriter pw = null;
+				try {
+					out = new OutputStreamWriter(new FileOutputStream(sfile));
+					pw = new PrintWriter(out);
+				} catch (FileNotFoundException e) {
+					System.out.println(e.getMessage());
+				}
+				pw.write("Nom ;Extension;taille;resultat d'analyse");
+				for (ResultatAnalyse rTmp : listeResAnalyse) {
+					pw.write("\r\n");
+					pw.write(rTmp.getFichieraAnalyser().getName() + ";" + rTmp.getFichieraAnalyser().getExtention()
+							+ ";" + rTmp.getFichieraAnalyser().getTaille() + ";" + rTmp.getResultatAnalyse());
+				}
+				pw.flush();
+				pw.close();
+
 			}
-			break;
-		}
 
-		
-		if (args != null && args.length > 3 && "-s".equals(args[2])) {
-		// Procéder à la generation du resultat d'analyse en CSV
-		// V1 : Ecriture de l'objet dans un fichier csv
-		
-		String sfile = ".\\res\\"+args[3];
+			
 
-		OutputStreamWriter out = null;
-		PrintWriter pw = null;
-		try {
-			out = new OutputStreamWriter(new FileOutputStream(sfile));
-			pw = new PrintWriter(out);
-		} catch (FileNotFoundException e) {
-			System.out.println(e.getMessage());
 		}
-		pw.write("Nom ;Extension;taille;resultat d'analyse");
-		for (ResultatAnalyse rTmp : listeResAnalyse) {
-			pw.write("\r\n");
-			pw.write(rTmp.getFichieraAnalyser().getName() + ";" + rTmp.getFichieraAnalyser().getExtention() + ";"
-					+ rTmp.getFichieraAnalyser().getTaille() + ";" + rTmp.getResultatAnalyse());
-		}
-		pw.flush();
-		pw.close();
-
+		if(!listeResAnalyse.isEmpty()) {
+			System.out.println("Nom ;Extension;taille;resultat d'analyse");
+			for (ResultatAnalyse rTmp : listeResAnalyse) {
+				System.out
+						.println(rTmp.getFichieraAnalyser().getName() + ";" + rTmp.getFichieraAnalyser().getExtention()
+								+ ";" + rTmp.getFichieraAnalyser().getTaille() + ";" + rTmp.getResultatAnalyse());
+			}
 		}
 		
-		System.out.println("Nom ;Extension;taille;resultat d'analyse");
-		for (ResultatAnalyse rTmp : listeResAnalyse) {
-			System.out.println(rTmp.getFichieraAnalyser().getName() + ";" + rTmp.getFichieraAnalyser().getExtention() + ";"
-					+ rTmp.getFichieraAnalyser().getTaille() + ";" + rTmp.getResultatAnalyse());
-		}
-
 	}
 }
