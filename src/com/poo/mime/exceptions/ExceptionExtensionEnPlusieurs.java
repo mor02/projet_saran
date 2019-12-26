@@ -7,7 +7,7 @@ public class ExceptionExtensionEnPlusieurs extends Exception {
 	public ExceptionExtensionEnPlusieurs (String mesg){
 		this.message=mesg;
 	}
-	public void setMessage(String mesg) {
+	public void setMessage(String mes) {
 		this.message = mes;
 	}
 	
