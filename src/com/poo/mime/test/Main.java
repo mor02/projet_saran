@@ -70,7 +70,7 @@ public class Main {
 		} catch (FileNotFoundException e) {
 			System.out.println(e.getMessage());
 		}
-		pw.write("Nom ;Extension;taille;resultat d'analyse");
+		pw.write("Nom ;MIME;Extension;taille;resultat d'analyse");
 		for (ResultatAnalyse rTmp : listeResAnalyse) {
 			pw.write("\r\n");
 			pw.write(rTmp.getFichieraAnalyser().getName() + ";" + rTmp.getFichieraAnalyser().getExtention() + ";"
@@ -81,7 +81,7 @@ public class Main {
 
 		}
 		
-		System.out.println("Nom ;Extension;taille;resultat d'analyse");
+		System.out.println("Nom ;MIME ;Extension ;taille ;resultat d'analyse");
 		for (ResultatAnalyse rTmp : listeResAnalyse) {
 			System.out.println(rTmp.getFichieraAnalyser().getName() + ";" + rTmp.getFichieraAnalyser().getExtention() + ";"
 					+ rTmp.getFichieraAnalyser().getTaille() + ";" + rTmp.getResultatAnalyse());
