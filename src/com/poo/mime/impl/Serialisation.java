@@ -2,9 +2,12 @@ package com.poo.mime.impl;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+
+import org.apache.tika.Tika;
 
 import com.poo.mime.beans.Fichier;
 import com.poo.mime.interfaces.ISerialisation;
@@ -26,16 +29,21 @@ public class Serialisation implements ISerialisation {
 	public String getMimeFichier(String chemin) {
 
 		// fichier doit être dans le repertoire
-//	      File file = new File(chemin);//
-//	      
-//	      //creation objet tika
-//	      Tika tika = new Tika();
-//	      
-//	      //detection du type MIME
-//	      String mime = tika.detect(file);
-//		
-//	      return mime;
-		return "text/html";
+	      File file = new File(chemin);//
+	      
+	      //creation objet tika
+	      Tika tika = new Tika();
+	      
+	      //detection du type MIME
+	      String mime=null;
+		try {
+			mime = tika.detect(file);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	      return mime;
+		//return "text/html";
 	}
 
 	public String getNomFichier(String chemin) {

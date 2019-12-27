@@ -70,21 +70,23 @@ public class Main {
 		} catch (FileNotFoundException e) {
 			System.out.println(e.getMessage());
 		}
-		pw.write("Nom ;Extension;taille;resultat d'analyse");
-		for (ResultatAnalyse rTmp : listeResAnalyse) {
-			pw.write("\r\n");
-			pw.write(rTmp.getFichieraAnalyser().getName() + ";" + rTmp.getFichieraAnalyser().getExtention() + ";"
-					+ rTmp.getFichieraAnalyser().getTaille() + ";" + rTmp.getResultatAnalyse());
-		}
+			pw.write("Nom ;Extension;mime;taille;resultat d'analyse");
+			for (ResultatAnalyse rTmp : listeResAnalyse) {
+				pw.write("\r\n");
+				pw.write(rTmp.getFichieraAnalyser().getName() + ";" + rTmp.getFichieraAnalyser().getExtention() + ";"
+						+ rTmp.getFichieraAnalyser().getMime() + ";" + rTmp.getFichieraAnalyser().getTaille() + ";"
+						+ rTmp.getResultatAnalyse());
+			}
 		pw.flush();
 		pw.close();
 
 		}
 		
-		System.out.println("Nom ;Extension;taille;resultat d'analyse");
+		System.out.println("Nom ;Extension;mime;taille;resultat d'analyse");
 		for (ResultatAnalyse rTmp : listeResAnalyse) {
 			System.out.println(rTmp.getFichieraAnalyser().getName() + ";" + rTmp.getFichieraAnalyser().getExtention() + ";"
-					+ rTmp.getFichieraAnalyser().getTaille() + ";" + rTmp.getResultatAnalyse());
+					+ rTmp.getFichieraAnalyser().getMime() + ";" + rTmp.getFichieraAnalyser().getTaille() + ";"
+					+ rTmp.getResultatAnalyse());
 		}
 
 	}
