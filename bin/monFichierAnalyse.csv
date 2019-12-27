@@ -1,0 +1,5 @@
+Nom ;Extension;taille;resultat d'analyse
+brest;png;2902;Image validé
+test;html;158327;fichier valide test
+testVide;html;0;Anomalie : Fichier vide
+testWord;docx;11502;Fichier compressé valide

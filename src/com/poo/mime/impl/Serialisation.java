@@ -11,9 +11,20 @@ import org.apache.tika.Tika;
 
 import com.poo.mime.beans.Fichier;
 import com.poo.mime.interfaces.ISerialisation;
-
+/**
+ * TODO : Commentaire de description
+ *
+ * @author Saran
+ *
+ */
 public class Serialisation implements ISerialisation {
 
+	/**
+	 * Cette permet de sérialiser un fichier physique en un fichier Java en mémoire (binaire)
+	 * @param Chemin du fichier physique
+	 * @return le fichier sérialisé 
+	 * @author Saran
+	 */
 	public Fichier processing(String chemin) {
 
 		Fichier fichier = new Fichier();

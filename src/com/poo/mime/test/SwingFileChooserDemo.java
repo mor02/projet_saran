@@ -39,7 +39,16 @@ import java.awt.BorderLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -63,7 +72,7 @@ public class SwingFileChooserDemo extends JPanel implements ActionListener {
 
   JButton openButton, saveButton;
 
-  JTextArea log;
+  public JTextArea log;
 
   JFileChooser fc;
 
@@ -92,14 +101,13 @@ public class SwingFileChooserDemo extends JPanel implements ActionListener {
 
     //Create the open button. We use the image from the JLF
     //Graphics Repository (but we extracted it from the jar).
-    openButton = new JButton("Open a File...",
+    openButton = new JButton("Ouvrir",
         createImageIcon("images/Open16.gif"));
     openButton.addActionListener(this);
 
     //Create the save button. We use the image from the JLF
     //Graphics Repository (but we extracted it from the jar).
-    saveButton = new JButton("Save a File...",
-        createImageIcon("images/Save16.gif"));
+    saveButton = new JButton("Charger analyse");
     saveButton.addActionListener(this);
 
     //For layout purposes, put the buttons in a separate panel
@@ -124,11 +132,29 @@ public class SwingFileChooserDemo extends JPanel implements ActionListener {
         log.append("Opening: " + file.getName() + "." + newline);
         Analyseur analyseur = new Analyseur();
         ResultatAnalyse rTmp = analyseur.analysePrincaple(file.getAbsolutePath());
+        //1. Affichage au niveau de l'interface graphique
         log.append(" Nom  : " + rTmp.getFichieraAnalyser().getName()+"\r\n");
         log.append(" Extention : " + rTmp.getFichieraAnalyser().getExtention()+"\r\n");
+        log.append(" Mime : " + rTmp.getFichieraAnalyser().getMime()+"\r\n");
         log.append(" Taille  : " + rTmp.getFichieraAnalyser().getTaille()+"\r\n");
         log.append(" Resultat : " + rTmp.getResultatAnalyse());
+        //2. Sauvegarde du resultat obtenu au niveau d'un fichier 
         
+        String sfile = ".\\res\\save_analyse_graphique.csv";
+
+		OutputStreamWriter out = null;
+		PrintWriter pw = null;
+		try {
+			out = new OutputStreamWriter(new FileOutputStream(sfile));
+			pw = new PrintWriter(out);
+		} catch (FileNotFoundException e2) {
+			System.out.println(e2.getMessage());
+		}
+				pw.write("Nom : " + rTmp.getFichieraAnalyser().getName() + "-" + "Extension : "+ rTmp.getFichieraAnalyser().getExtention() + "-"
+						+ "Mime :" +rTmp.getFichieraAnalyser().getMime() + ";" + "Taille : " +rTmp.getFichieraAnalyser().getTaille() + ";"
+						+ "Resultat :" + rTmp.getResultatAnalyse());
+		pw.flush();
+		pw.close();
       } else {
         log.append("Open command cancelled by user." + newline);
       }
@@ -136,14 +162,21 @@ public class SwingFileChooserDemo extends JPanel implements ActionListener {
 
       //Handle save button action.
     } else if (e.getSource() == saveButton) {
-      int returnVal = fc.showSaveDialog(SwingFileChooserDemo.this);
-      if (returnVal == JFileChooser.APPROVE_OPTION) {
-        File file = fc.getSelectedFile();
-        //This is where a real application would save the file.
-        log.append("Saving: " + file.getName() + "." + newline);
-      } else {
-        log.append("Save command cancelled by user." + newline);
-      }
+      //int returnVal = fc.showSaveDialog(SwingFileChooserDemo.this);
+//      if (returnVal == JFileChooser.APPROVE_OPTION) {
+//        File file = fc.getSelectedFile();
+//        //This is where a real application would save the file.
+//        log.append("Saving: " + file.getName() + "." + newline);
+    	  String sfile = ".\\res\\save_analyse_graphique.csv";
+
+    		List<String> liste = readFile(new File(sfile));
+    		for(String s : liste) {
+    			log.append(s);
+    			
+    		}
+//      } else {
+//        log.append("Save command cancelled by user." + newline);
+//      }
       log.setCaretPosition(log.getDocument().getLength());
     }
   }
@@ -154,7 +187,6 @@ public class SwingFileChooserDemo extends JPanel implements ActionListener {
     if (imgURL != null) {
       return new ImageIcon(imgURL);
     } else {
-      System.err.println("Couldn't find file: " + path);
       return null;
     }
   }
@@ -169,7 +201,7 @@ public class SwingFileChooserDemo extends JPanel implements ActionListener {
     JDialog.setDefaultLookAndFeelDecorated(true);
 
     //Create and set up the window.
-    JFrame frame = new JFrame("SwingFileChooserDemo");
+    JFrame frame = new JFrame("Mode Graphique");
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
     //Create and set up the content pane.
@@ -180,8 +212,46 @@ public class SwingFileChooserDemo extends JPanel implements ActionListener {
     //Display the window.
     frame.pack();
     frame.setVisible(true);
+    
+    
   }
 
+	public static List<String> readFile(File file) {
+
+		List<String> result = new ArrayList<String>();
+
+		FileReader fr = null;
+		BufferedReader br = null;
+		try {
+			fr = new FileReader(file);
+
+			br = new BufferedReader(fr);
+
+			for (String line = br.readLine(); line != null; line = br.readLine()) {
+				result.add(line);
+			}
+
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			br.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		try {
+			fr.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return result;
+	}
   public static void main(String[] args) {
     //Schedule a job for the event-dispatching thread:
     //creating and showing this application's GUI.

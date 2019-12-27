@@ -1,0 +1,8 @@
+com.poo.mime.beans
+com.poo.mime.exceptions
+com.poo.mime.impl
+com.poo.mime.interfaces
+com.poo.mime.messages
+com.poo.mime.test
+com.poo.mime.utils
+content
