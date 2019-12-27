@@ -4,8 +4,11 @@ public class ExceptionExtensionEnPlusieurs extends Exception {
 
 	private String message;
 	
-	public void setMessage(String mesg) {
-		this.message = mesg;
+	public ExceptionExtensionEnPlusieurs (String mesg){
+		this.message=mesg;
+	}
+	public void setMessage(String mes) {
+		this.message = mes;
 	}
 	
 	public String getMessage() {
